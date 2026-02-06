@@ -137,9 +137,14 @@
 
 <script>
 window.addEventListener('resize', function() {
-  if (typeof driverChart !== 'undefined') driverChart.resize();
-  if (typeof chart !== 'undefined') chart.resize();
+  if (driverChart && typeof driverChart.resize === 'function') {
+    driverChart.resize();
+  }
+  if (chart && typeof chart.resize === 'function') {
+    chart.resize();
+  }
 });
+
 </script>
 </body>
 </html>
