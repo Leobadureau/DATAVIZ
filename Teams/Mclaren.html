@@ -30,7 +30,7 @@
 </head>
 <body class="mclaren">
 
-  <a href="../Index.html" class="back-home">← Retour à l'accueil</a>
+  <a href="../index.html" class="back-home">← Retour à l'accueil</a>
 
   <!-- VIDÉO TEAM -->
   <section class="team-video">
@@ -66,7 +66,7 @@
 
       <!-- Team Principal -->
       <div class="card principal">
-        <img src="../img/teamprincipal/Andrea.png" alt="Team Principal">
+        <img src="../img/Teamprincipal/Andrea.png" alt="Team Principal">
         <h3>Andrea Stella</h3>
         <p>Team Principal</p>
       </div>
@@ -79,7 +79,7 @@
   <script>
     const chart = echarts.init(document.getElementById('chart'));
     
-    fetch('../json/f1_2025_teammate_duels.json')
+    fetch('../Json/f1_2025_teammate_duels.json')
       .then(res => res.json())
       .then(data => {
         const duel = data.duels.find(d => d.team === 'McLaren');
