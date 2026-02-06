@@ -30,7 +30,7 @@
 </head>
 <body class="mercedes">
 
-  <a href="../Index.html" class="back-home">← Retour à l'accueil</a>
+  <a href="../index.html" class="back-home">← Retour à l'accueil</a>
 
   <!-- VIDÉO TEAM -->
   <section class="team-video">
@@ -79,7 +79,7 @@
   <script>
     const chart = echarts.init(document.getElementById('chart'));
     
-    fetch('../json/f1_2025_teammate_duels.json')
+    fetch('../Json/f1_2025_teammate_duels.json')
       .then(res => res.json())
       .then(data => {
         const duel = data.duels.find(d => d.team === 'Mercedes');
