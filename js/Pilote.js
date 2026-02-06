@@ -26,7 +26,7 @@ Promise.all([
   fetch('./Json/races.json').then(res => res.json()),
   fetch('./Json/constructors.json').then(res => res.json()),
   fetch('./Json/results.json').then(res => res.json()),
-  fetch('./Json/team.json').then(res => res.json())
+  fetch('./Json/Team.json').then(res => res.json())
 ]).then(([drivers, standings, races, constructors, results, teamData]) => {
   const raceMap = new Map(races.map(r => [r.raceId, { year: r.year, round: r.round }]));
   const constructorMap = new Map(constructors.map(c => [c.constructorId.toString(), c.name]));
