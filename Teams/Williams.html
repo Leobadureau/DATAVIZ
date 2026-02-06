@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparaison Pilotes F1 - Williams</title>
+  <link rel="stylesheet" href="team.css">
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background-color: #0B0B30;
+      font-family: Arial, Helvetica, sans-serif;
+      color: white;
+    }
+
+    #chart {
+      width: 100%;
+      height: 500px;
+      margin-top: 50px;
+    }
+
+    .back-home {
+      margin: 20px;
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body class="williams">
+
+  <a href="../Index.html" class="back-home">← Retour à l'accueil</a>
+
+  <!-- VIDÉO TEAM -->
+  <section class="team-video">
+    <h1>Williams</h1>
+    <div class="video-container">
+      <iframe width="692" height="389" 
+              src="https://www.youtube.com/embed/A2KPeKgmE_o" 
+              title="Williams F1" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ENCARTE PILOTES & TEAM -->
+  <section class="team-info">
+    <h2>Les Pilotes & Team Principal</h2>
+    <div class="team-cards">
+      <!-- Pilote 1 -->
+      <div class="card pilote">
+        <img src="https://cdn.racingnews365.com/Riders/Albon/_570x570_crop_center-center_none/f1_2024_aa_wil.png?v=1708704612" alt="Alexander Albon">
+        <h3>Alexander Albon</h3>
+        <p>Pilote N°1</p>
+      </div>
+
+      <!-- Pilote 2 -->
+      <div class="card pilote">
+        <img src="https://cdn.racingnews365.com/_570x570_crop_center-center_none/carsai01.png?v=1741599360" alt="Nico Hulkenberg">
+        <h3>Carlos Sainz</h3>
+        <p>Pilote N°2</p>
+      </div>
+
+      <!-- Team Principal -->
+      <div class="card principal">
+        <img src="https://gpfanatics.com/wp-content/uploads/2024/01/James-Vowles-940x1024.png" alt="Team Principal">
+        <h3>James Vowles</h3>
+        <p>Team Principal</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRAPH DUEL -->
+  <div id="chart"></div>
+
+  <script>
+    const chart = echarts.init(document.getElementById('chart'));
+    
+    fetch('../json/f1_2025_teammate_duels.json')
+      .then(res => res.json())
+      .then(data => {
+        const duel = data.duels.find(d => d.team === 'Williams');
+
+        const categories = [
+          'Qualifications',
+          'Courses',
+          'Points',
+          'Victoires',
+          'Podiums',
+          'Poles',
+          'Top 10'
+        ];
+
+        const albon = [
+          duel.stats.qualifications[0],
+          duel.stats.races[0],
+          duel.stats.points[0],
+          duel.stats.wins[0],
+          duel.stats.podiums[0],
+          duel.stats.poles[0],
+          duel.stats.top_10[0]
+        ];
+
+        const hulkenberg = [
+          -duel.stats.qualifications[1],
+          -duel.stats.races[1],
+          -duel.stats.points[1],
+          -duel.stats.wins[1],
+          -duel.stats.podiums[1],
+          -duel.stats.poles[1],
+          -duel.stats.top_10[1]
+        ];
+
+        chart.setOption({
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: { type: 'shadow' }
+          },
+          legend: {
+            data: [duel.drivers[1], duel.drivers[0]],
+            textStyle: { color: '#fff' },
+            top: 10
+          },
+          grid: { left: 120, right: 120, top: 60, bottom: 40 },
+          xAxis: {
+            type: 'value',
+            axisLabel: { color: '#aaa', formatter: v => Math.abs(v) },
+            splitLine: { lineStyle: { type: 'dashed', color: '#333' } }
+          },
+          yAxis: {
+            type: 'category',
+            data: categories,
+            axisTick: { show: false },
+            axisLabel: { color: '#fff', fontWeight: 'bold' }
+          },
+          series: [
+            {
+              name: duel.drivers[1], // Hulkenberg
+              type: 'bar',
+              stack: 'total',
+              label: { show: true, position: 'left', formatter: v => Math.abs(v.value) },
+              itemStyle: { color: '#005AFF' }, // bleu Williams Hulkenberg
+              data: hulkenberg
+            },
+            {
+              name: duel.drivers[0], // Albon
+              type: 'bar',
+              stack: 'total',
+              label: { show: true, position: 'right' },
+              itemStyle: { color: '#003366' }, // bleu foncé Williams Albon
+              data: albon
+            }
+          ]
+        });
+
+        window.addEventListener('resize', chart.resize);
+      });
+  </script>
+
+</body>
+</html>

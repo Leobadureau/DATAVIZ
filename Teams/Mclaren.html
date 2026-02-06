@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparaison Pilotes F1 - McLaren</title>
+  <link rel="stylesheet" href="team.css">
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background-color: #060B1A;
+      font-family: Arial, Helvetica, sans-serif;
+      color: white;
+    }
+
+    #chart {
+      width: 100%;
+      height: 500px;
+      margin-top: 50px;
+    }
+
+    .back-home {
+      margin: 20px;
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body class="mclaren">
+
+  <a href="../Index.html" class="back-home">← Retour à l'accueil</a>
+
+  <!-- VIDÉO TEAM -->
+  <section class="team-video">
+    <h1>McLaren</h1>
+    <div class="video-container">
+      <iframe width="692" height="389" 
+              src="https://www.youtube.com/embed/6UuFXnoIrUk" 
+              title="McLaren F1" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- ENCARTE PILOTES & TEAM -->
+  <section class="team-info">
+    <h2>Les Pilotes & Team Principal</h2>
+    <div class="team-cards">
+      <!-- Pilote 1 -->
+      <div class="card pilote">
+        <img src="https://sportrenders.com/wp-content/uploads/2024/05/Lando-Norris-PNG-F1-Render-Mclaren--670x838.png" alt="Lando Norris">
+        <h3>Lando Norris</h3>
+        <p>Pilote N°1</p>
+      </div>
+
+      <!-- Pilote 2 -->
+      <div class="card pilote">
+        <img src="https://sportrenders.com/wp-content/uploads/2024/09/Oscar-Piastri-PNG-Formula-1-Mclaren-Render.png" alt="Oscar Piastri">
+        <h3>Oscar Piastri</h3>
+        <p>Pilote N°2</p>
+      </div>
+
+      <!-- Team Principal -->
+      <div class="card principal">
+        <img src="../img/teamprincipal/Andrea.png" alt="Team Principal">
+        <h3>Andrea Stella</h3>
+        <p>Team Principal</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRAPH DUEL -->
+  <div id="chart"></div>
+
+  <script>
+    const chart = echarts.init(document.getElementById('chart'));
+    
+    fetch('../json/f1_2025_teammate_duels.json')
+      .then(res => res.json())
+      .then(data => {
+        const duel = data.duels.find(d => d.team === 'McLaren');
+
+        const categories = [
+          'Qualifications',
+          'Courses',
+          'Points',
+          'Victoires',
+          'Podiums',
+          'Poles',
+          'Top 10'
+        ];
+
+        const norris = [
+          duel.stats.qualifications[0],
+          duel.stats.races[0],
+          duel.stats.points[0],
+          duel.stats.wins[0],
+          duel.stats.podiums[0],
+          duel.stats.poles[0],
+          duel.stats.top_10[0]
+        ];
+
+        const piastri = [
+          -duel.stats.qualifications[1],
+          -duel.stats.races[1],
+          -duel.stats.points[1],
+          -duel.stats.wins[1],
+          -duel.stats.podiums[1],
+          -duel.stats.poles[1],
+          -duel.stats.top_10[1]
+        ];
+
+        chart.setOption({
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: { type: 'shadow' }
+          },
+          legend: {
+            // ✅ Piastri à gauche, Norris à droite
+            data: [duel.drivers[1], duel.drivers[0]],
+            textStyle: { color: '#fff' },
+            top: 10
+          },
+          grid: { left: 120, right: 120, top: 60, bottom: 40 },
+          xAxis: {
+            type: 'value',
+            axisLabel: { color: '#aaa', formatter: v => Math.abs(v) },
+            splitLine: { lineStyle: { type: 'dashed', color: '#333' } }
+          },
+          yAxis: {
+            type: 'category',
+            data: categories,
+            axisTick: { show: false },
+            axisLabel: { color: '#fff', fontWeight: 'bold' }
+          },
+          series: [
+            {
+              name: duel.drivers[1], // Piastri
+              type: 'bar',
+              stack: 'total',
+              label: { show: true, position: 'left', formatter: v => Math.abs(v.value) },
+              itemStyle: { color: '#003087' }, // bleu foncé McLaren
+              data: piastri
+            },
+            {
+              name: duel.drivers[0], // Norris
+              type: 'bar',
+              stack: 'total',
+              label: { show: true, position: 'right' },
+              itemStyle: { color: '#FF8700' }, // orange McLaren
+              data: norris
+            }
+          ]
+        });
+
+        window.addEventListener('resize', chart.resize);
+      });
+  </script>
+
+</body>
+</html>

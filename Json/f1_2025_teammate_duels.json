@@ -1,0 +1,136 @@
+{
+  "season": 2025,
+  "type": "teammate_head_to_head",
+  "duels": [
+    {
+      "team": "McLaren",
+      "drivers": ["Lando Norris", "Oscar Piastri"],
+      "stats": {
+        "qualifications": [13, 11],
+        "races": [13, 10],
+        "points": [423, 410],
+        "wins": [7, 7],
+        "podiums": [18, 16],
+        "poles": [7, 6],
+        "top_10": [21, 22]
+      }
+    },
+    {
+      "team": "Mercedes",
+      "drivers": ["George Russell", "Andrea Kimi Antonelli"],
+      "stats": {
+        "qualifications": [21, 3],
+        "races": [21, 3],
+        "points": [319, 150],
+        "wins": [2, 0],
+        "podiums": [9, 3],
+        "poles": [2, 0],
+        "top_10": [23, 14]
+      }
+    },
+    {
+      "team": "Red Bull Racing",
+      "drivers": ["Max Verstappen", "Yuki Tsunoda"],
+      "stats": {
+        "qualifications": [22, 0],
+        "races": [21, 1],
+        "points": [421, 33],
+        "wins": [8, 0],
+        "podiums": [15, 0],
+        "poles": [8, 0],
+        "top_10": [23, 7]
+      }
+    },
+    {
+      "team": "Ferrari",
+      "drivers": ["Charles Leclerc", "Lewis Hamilton"],
+      "stats": {
+        "qualifications": [19, 5],
+        "races": [18, 3],
+        "points": [242, 156],
+        "wins": [0, 0],
+        "podiums": [7, 0],
+        "poles": [1, 0],
+        "top_10": [20, 19]
+      }
+    },
+    {
+      "team": "Williams",
+      "drivers": ["Alexander Albon", "Carlos Sainz"],
+      "stats": {
+        "qualifications": [9, 14],
+        "races": [14, 9],
+        "points": [73, 64],
+        "wins": [0, 0],
+        "podiums": [0, 2],
+        "poles": [0, 0],
+        "top_10": [11, 10]
+      }
+    },
+    {
+      "team": "VCARB",
+      "drivers": ["Isack Hadjar", "Liam Lawson"],
+      "stats": {
+        "qualifications": [16, 6],
+        "races": [13, 8],
+        "points": [51, 38],
+        "wins": [0, 0],
+        "podiums": [1, 0],
+        "poles": [0, 0],
+        "top_10": [9, 7]
+      }
+    },
+    {
+      "team": "Aston Martin",
+      "drivers": ["Fernando Alonso", "Lance Stroll"],
+      "stats": {
+        "qualifications": [24, 0],
+        "races": [16, 8],
+        "points": [56, 33],
+        "wins": [0, 0],
+        "podiums": [0, 0],
+        "poles": [0, 0],
+        "top_10": [10, 6]
+      }
+    },
+    {
+      "team": "Haas",
+      "drivers": ["Oliver Bearman", "Esteban Ocon"],
+      "stats": {
+        "qualifications": [14, 10],
+        "races": [12, 12],
+        "points": [41, 38],
+        "wins": [0, 0],
+        "podiums": [0, 0],
+        "poles": [0, 0],
+        "top_10": [9, 9]
+      }
+    },
+    {
+      "team": "Kick Sauber",
+      "drivers": ["Nico Hülkenberg", "Gabriel Bortoleto"],
+      "stats": {
+        "qualifications": [11, 12],
+        "races": [12, 11],
+        "points": [51, 19],
+        "wins": [0, 0],
+        "podiums": [1, 0],
+        "poles": [0, 0],
+        "top_10": [9, 5]
+      }
+    },
+    {
+      "team": "Alpine",
+      "drivers": ["Pierre Gasly", "Franco Colapinto"],
+      "stats": {
+        "qualifications": [13, 5],
+        "races": [11, 7],
+        "points": [22, 0],
+        "wins": [0, 0],
+        "podiums": [0, 0],
+        "poles": [0, 0],
+        "top_10": [5, 0]
+      }
+    }
+  ]
+}

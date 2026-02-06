@@ -1,0 +1,359 @@
+/* =============================== */
+/* VARIABLES */
+:root {
+  --bg-main: #1e1e1e;
+  --bg-dark: #111;
+  --bg-mid: #222;
+  --bg-topbar: #333;
+  --red-main: #d40000;
+  --white: #fff;
+  --transition: 0.3s ease;
+}
+
+/* =============================== */
+/* GLOBAL */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg-main);
+  color: var(--white);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* =============================== */
+/* TOPBAR */
+.topbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background: var(--bg-topbar);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1000;
+  border-bottom: 4px dashed var(--white);
+}
+.logo { height: 100px; }
+.car-container { position: absolute; width: 80px; height: 25px; }
+.car { width: 100%; height: 100%; }
+.car1 { top: 10%; }
+.car2 { top: 60%; }
+
+/* =============================== */
+/* PAGE */
+.page {
+  min-height: calc(100vh - 60px);
+  padding: 80px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =============================== */
+/* HERO */
+.hero { position: relative; }
+.hero-img { width: 100%; height: 100vh; object-fit: cover; }
+.hero-content {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logo1 { width: 90%; max-width: 1200px; }
+.hero-menu { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+.hero-menu a {
+  background: rgba(0,0,0,0.6);
+  color: var(--white);
+  padding: 15px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background var(--transition);
+}
+.hero-menu a:hover { background: var(--red-main); }
+
+/* =============================== */
+/* PILOTES */
+.pilot-list {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pilot { display: flex; align-items: center; gap: 10px; }
+.bar { flex: 1; padding: 5px; border-radius: 5px; text-align: right; font-weight: bold; color: var(--white); }
+.orange { background: #f08a1c; }
+.blue { background: #10263f; }
+.dark { background: #132230; }
+.maroon { background: #8a1b1b; }
+.red { background: #c32b2b; }
+.grey { background: #6b6b6b; }
+
+/* =============================== */
+/* CAROUSEL */
+.carousel-container {
+  width: 100%;
+  max-width: 100%;
+  min-height: 300px;
+  perspective: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: visible;
+}
+#carousel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+.item {
+  position: absolute;
+  width: 150px;
+  height: 210px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  transition: transform 0.5s;
+}
+.item img { width: 100%; height: 100%; object-fit: contain; transition: transform var(--transition); }
+.item:hover img { transform: scale(1.05); }
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.2);
+  border: none;
+  font-size: 2rem;
+  color: var(--white);
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 10px;
+  z-index: 10;
+  transition: background var(--transition);
+}
+.carousel-btn:hover { background: rgba(255,255,255,0.5); }
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+
+/* =============================== */
+/* POPUP CAROUSEL */
+.popup {
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.popup.active { opacity: 1; visibility: visible; transform: scale(1); }
+.popup-img {
+  max-width: 90%;
+  max-height: 90%;
+  width: auto;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+  transition: transform 0.3s;
+}
+.popup-img:hover { transform: scale(1.02); }
+.popup-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 2.5rem;
+  color: var(--white);
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* =============================== */
+/* TEAMS */
+.team-section { text-align: center; padding: 40px 20px; }
+.team-row { display: grid; grid-template-columns: 1fr; gap: 15px; }
+.team-card {
+  background: var(--bg-dark);
+  padding: 10px;
+  border-radius: 15px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+}
+.team-card img { max-height: 100%; width: auto; object-fit: contain; }
+.team-card.redbull:hover     { box-shadow: 0 10px 25px rgba(54,113,198,0.7); border: 2px solid #3671C6; transform: scale(1.06); }
+.team-card.mercedes:hover    { box-shadow: 0 10px 25px rgba(39,244,210,0.7); border: 2px solid #27F4D2; transform: scale(1.06); }
+.team-card.ferrari:hover     { box-shadow: 0 10px 25px rgba(232,0,32,0.75); border: 2px solid #E80020; transform: scale(1.06); }
+.team-card.mclaren:hover     { box-shadow: 0 10px 25px rgba(255,128,0,0.75); border: 2px solid #FF8000; transform: scale(1.06); }
+.team-card.astonmartin:hover { box-shadow: 0 10px 25px rgba(34,153,113,0.75); border: 2px solid #229971; transform: scale(1.06); }
+.team-card.alpine:hover      { box-shadow: 0 10px 25px rgba(0,147,204,0.75); border: 2px solid #0093CC; transform: scale(1.06); }
+.team-card.williams:hover    { box-shadow: 0 10px 25px rgba(100,196,255,0.75); border: 2px solid #64C4FF; transform: scale(1.06); }
+.team-card.vcarb:hover       { box-shadow: 0 10px 25px rgba(102,146,255,0.75); border: 2px solid #6692FF; transform: scale(1.06); }
+.team-card.sauber:hover      { box-shadow: 0 10px 25px rgba(82,226,82,0.75); border: 2px solid #52E252; transform: scale(1.06); }
+.team-card.haas:hover        { box-shadow: 0 10px 25px rgba(182,186,189,0.75); border: 2px solid #B6BABD; transform: scale(1.06); }
+
+/* =============================== */
+/* CONSTRUCTEURS */
+.constructor-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+#chart {
+  width: 100%;
+  min-height: 400px;
+}
+.ranking-container {
+  width: 100%;
+  max-width: 300px;
+}
+
+/* =============================== */
+/* CIRCUITS */
+#circuits h2 { font-size: 2rem; text-align: center; margin-bottom: 20px; }
+.dropdown {
+  position: relative;
+  width: 90%;
+  max-width: 300px;
+  margin: 20px auto;
+  z-index: 50;
+}
+#dropdownBtn {
+  width: 100%;
+  padding: 12px 20px;
+  background: rgba(0,0,0,0.6);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  text-align: left;
+  cursor: pointer;
+  font-weight: bold;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--bg-mid);
+  border-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 5px;
+  padding: 0;
+  list-style: none;
+  z-index: 999;
+}
+.dropdown-menu li { padding: 8px; display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.dropdown-menu li:hover { background: #444; }
+.dropdown-menu img { width: 20px !important; height: 12px !important; object-fit: cover; flex-shrink: 0; }
+/* CIRCUITS */
+#info {
+  width: 100%;
+  max-width: 900px; /* Limite la largeur sur desktop */
+  margin: 20px auto;
+}
+
+#info .circuit-img {
+  width: 100%;
+  max-height: 400px; /* Limite la hauteur de l'image */
+  object-fit: contain; /* Contient l'image sans la déformer */
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  margin-bottom: 15px;
+}
+
+/* Ajustements responsive */
+@media (max-width: 767px) {
+  #info .circuit-img {
+    max-height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  #info .circuit-img {
+    max-height: 180px;
+  }
+}
+
+
+
+/* =============================== */
+/* MEDIA QUERIES - MOBILE FIRST */
+/* Mobile */
+@media (max-width: 480px) {
+  .popup-img { max-width: 95%; max-height: 70%; }
+  .popup-close { font-size: 2rem; top: 10px; right: 15px; }
+  .carousel-container, #carousel { height: 300px; }
+  .item { width: 150px; height: 210px; margin-left: -75px; margin-top: -105px; }
+  .constructor-container { flex-direction: column; align-items: center; }
+  #chart { height: 400px; }
+  .ranking-container { width: 100%; }
+  .team-row { grid-template-columns: 1fr; }
+  .team-card { height: 200px; }
+}
+
+/* Tablet */
+@media (min-width: 481px) and (max-width: 767px) {
+  .carousel-container, #carousel { height: 400px; }
+  .item { width: 180px; height: 250px; margin-left: -90px; margin-top: -125px; }
+  .constructor-container { flex-direction: row; align-items: flex-start; justify-content: center; gap: 20px; }
+  #chart { width: 65%; height: 500px; }
+  .ranking-container { width: 35%; }
+  .team-row { grid-template-columns: repeat(2, 1fr); }
+  .team-card { height: 250px; }
+}
+
+/* Small Desktop */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .carousel-container, #carousel { height: 500px; }
+  .item { width: 220px; height: 320px; margin-left: -110px; margin-top: -160px; }
+  .constructor-container { flex-direction: row; align-items: flex-start; justify-content: center; gap: 20px; }
+  #chart { width: 65%; height: 500px; }
+  .ranking-container { width: 35%; }
+  .team-row { grid-template-columns: repeat(2,1fr); }
+  .team-card { height: 250px; }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .carousel-container, #carousel { height: 600px; }
+  .item { width: 320px; height: 450px; margin-left: -160px; margin-top: -225px; }
+  .constructor-container { flex-direction: row; align-items: flex-start; justify-content: center; gap: 40px; }
+  #chart { width: 70%; max-width: 900px; height: 650px; }
+  .ranking-container { width: auto; min-width: 250px; }
+  .team-row { grid-template-columns: repeat(5,1fr); }
+  .team-card { height: 350px; }
+  .logo1 { width: 1200px; }
+}
