@@ -1,9 +1,9 @@
 const chart = echarts.init(document.getElementById('chart'));
 
 Promise.all([
-  fetch("json/constructors.json").then(r => r.json()),
-  fetch("json/constructor_results.json").then(r => r.json())
-  fetch("json/races.json").then(r => r.json())
+  fetch("Json/constructors.json").then(r => r.json()),
+  fetch("Json/constructor_results.json").then(r => r.json())
+  fetch("Json/races.json").then(r => r.json())
 ]).then(([constructors, results, races]) => {
 
   const racesMap = new Map(races.map(r => [r.raceId, { year: r.year, round: r.round }]));
