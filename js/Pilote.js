@@ -21,12 +21,12 @@ const colorMap = {
 };
 
 Promise.all([
-  fetch('json/drivers.json').then(res => res.json()),
-  fetch('json/driver_standings.json').then(res => res.json()),
-  fetch('json/races.json').then(res => res.json()),
-  fetch('json/constructors.json').then(res => res.json()),
-  fetch('json/results.json').then(res => res.json()),
-  fetch('json/team.json').then(res => res.json())
+  fetch('Json/drivers.json').then(res => res.json()),
+  fetch('Json/driver_standings.json').then(res => res.json()),
+  fetch('Json/races.json').then(res => res.json()),
+  fetch('Jon/constructors.json').then(res => res.json()),
+  fetch('Json/results.json').then(res => res.json()),
+  fetch('Json/team.json').then(res => res.json())
 ]).then(([drivers, standings, races, constructors, results, teamData]) => {
   const raceMap = new Map(races.map(r => [r.raceId, { year: r.year, round: r.round }]));
   const constructorMap = new Map(constructors.map(c => [c.constructorId.toString(), c.name]));
