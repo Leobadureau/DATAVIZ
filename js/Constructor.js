@@ -2,7 +2,7 @@ const chart = echarts.init(document.getElementById('chart'));
 
 Promise.all([
   fetch("json/constructors.json").then(r => r.json()),
-  fetch("json/constructor_results.json").then(r => r.json()),
+  fetch("json/constructor_results.json").then(r => r.json())
   fetch("json/races.json").then(r => r.json())
 ]).then(([constructors, results, races]) => {
 
