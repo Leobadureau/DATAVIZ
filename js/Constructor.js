@@ -1,8 +1,8 @@
 const chart = echarts.init(document.getElementById('chart'));
 
 Promise.all([
-  fetch("./Json/constructors.json").then(r => r.json());
-  fetch("./Json/constructor_results.json").then(r => r.json());
+  fetch("./Json/constructors.json").then(r => r.json()),
+  fetch("./Json/constructor_results.json").then(r => r.json()),
   fetch("./Json/races.json").then(r => r.json())
 ]).then(([constructors, results, races]) => {
 
