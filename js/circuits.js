@@ -82,9 +82,15 @@ fetch("https://f1api.dev/api/2025/circuits")
 
 // 2️⃣ Récupère les courses 2025
 fetch("https://f1api.dev/api/2025/races")
-  .then(res => res.json())
+  .then(res => {
+    if (!res.ok) {
+      console.warn("Aucune course trouvée pour 2025");
+      return { races: [] }; // Retourne un tableau vide pour éviter les erreurs
+    }
+    return res.json();
+  })
   .then(json => { races2025 = json.races || []; })
-  .catch(err => console.warn("Erreur courses 2025:", err));
+  .catch(err => console.error("Erreur fetch races 2025:", err));
 
 // 3️⃣ Affichage des infos du circuit
 dropdownMenu.addEventListener("click", e => {
